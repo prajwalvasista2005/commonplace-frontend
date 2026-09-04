@@ -1,5 +1,11 @@
-import { useState } from 'react';
-import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
+import { useState } from "react";
+
+import {
+  Link as RouterLink,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
+
 import {
   AppBar,
   Avatar,
@@ -18,18 +24,18 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
-} from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
-import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
-import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
-import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
-import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined';
-import { useAuth } from '../../hooks/useAuth';
-import { useThemeMode } from '../../context/ThemeContext';
+} from "@mui/material";
+
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+
+import { useAuth } from "../../hooks/useAuth";
+import { useThemeMode } from "../../context/ThemeContext";
 
 function Logo() {
   return (
@@ -37,12 +43,14 @@ function Logo() {
       component={RouterLink}
       to="/"
       sx={{
-        display: 'flex',
-        alignItems: 'center',
+        display: "flex",
+        alignItems: "center",
         gap: 1.25,
-        textDecoration: 'none',
-        color: 'inherit',
-        '&:hover': { opacity: 0.9 },
+        textDecoration: "none",
+        color: "inherit",
+        "&:hover": {
+          opacity: 0.9,
+        },
       }}
       aria-label="Commonplace home"
     >
@@ -50,16 +58,21 @@ function Logo() {
         component="img"
         src="/favicon.svg"
         alt=""
-        sx={{ width: 32, height: 32, borderRadius: 1.5 }}
+        sx={{
+          width: 32,
+          height: 32,
+          borderRadius: 1.5,
+        }}
       />
+
       <Typography
         variant="h6"
         component="span"
         sx={{
           fontWeight: 700,
-          letterSpacing: '-0.02em',
-          fontSize: '1.25rem',
-          color: 'text.primary',
+          letterSpacing: "-0.02em",
+          fontSize: "1.25rem",
+          color: "text.primary",
         }}
       >
         Commonplace
@@ -70,39 +83,69 @@ function Logo() {
 
 export default function Navbar() {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
   const [drawerOpen, setDrawerOpen] = useState(false);
+
   const { user, isAuthenticated, logout } = useAuth();
   const { isDark, toggleTheme } = useThemeMode();
+
   const location = useLocation();
   const navigate = useNavigate();
 
-  const isAuthPage = location.pathname === '/login' || location.pathname === '/register';
+  const isAuthPage =
+    location.pathname === "/login" ||
+    location.pathname === "/register";
 
   const handleLogout = async () => {
     setDrawerOpen(false);
+
     await logout();
-    navigate('/login');
+    navigate("/login");
   };
 
   const isActive = (path) => {
-    if (path === '/') return location.pathname === '/';
+    if (path === "/") {
+      return location.pathname === "/";
+    }
+
     return location.pathname.startsWith(path);
   };
 
   const drawerContent = (
-    <Box sx={{ width: 280, display: 'flex', flexDirection: 'column', height: '100%' }} role="presentation">
+    <Box
+      sx={{
+        width: 280,
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+      }}
+      role="presentation"
+    >
       {/* Drawer Header */}
-      <Box sx={{ px: 2.5, py: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <Box
+        sx={{
+          px: 2.5,
+          py: 2,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
         <Logo />
-        <IconButton size="small" onClick={() => setDrawerOpen(false)} aria-label="Close menu">
+
+        <IconButton
+          size="small"
+          onClick={() => setDrawerOpen(false)}
+          aria-label="Close menu"
+        >
           <CloseIcon fontSize="small" />
         </IconButton>
       </Box>
 
       <Divider />
 
-      {/* User profile header card in drawer - primary link to profile */}
+      {/* User Profile */}
       {isAuthenticated && user && (
         <Box
           component={RouterLink}
@@ -111,30 +154,63 @@ export default function Navbar() {
           sx={{
             px: 2.5,
             py: 2,
-            display: 'flex',
-            alignItems: 'center',
+            display: "flex",
+            alignItems: "center",
             gap: 1.5,
-            textDecoration: 'none',
-            color: 'inherit',
-            transition: 'background-color 0.15s ease',
-            bgcolor: (t) => (t.palette.mode === 'light' ? 'rgba(14, 77, 85, 0.04)' : 'rgba(237, 243, 243, 0.04)'),
-            '&:hover': {
-              bgcolor: (t) => (t.palette.mode === 'light' ? 'rgba(14, 77, 85, 0.08)' : 'rgba(237, 243, 243, 0.08)'),
+            textDecoration: "none",
+            color: "inherit",
+            transition: "background-color 0.15s ease",
+            bgcolor: (t) =>
+              t.palette.mode === "light"
+                ? "rgba(14, 77, 85, 0.04)"
+                : "rgba(237, 243, 243, 0.04)",
+            "&:hover": {
+              bgcolor: (t) =>
+                t.palette.mode === "light"
+                  ? "rgba(14, 77, 85, 0.08)"
+                  : "rgba(237, 243, 243, 0.08)",
             },
           }}
         >
           <Avatar
             src={user.profile_picture_url || undefined}
             alt={user.username}
-            sx={{ width: 42, height: 42, bgcolor: 'primary.main', fontWeight: 600 }}
+            sx={{
+              width: 42,
+              height: 42,
+              bgcolor: "primary.main",
+              fontWeight: 600,
+            }}
           >
             {user.username?.charAt(0)?.toUpperCase()}
           </Avatar>
-          <Box sx={{ minWidth: 0, flex: 1 }}>
-            <Typography variant="subtitle2" noWrap sx={{ fontWeight: 650, lineHeight: 1.2 }}>
+
+          <Box
+            sx={{
+              minWidth: 0,
+              flex: 1,
+            }}
+          >
+            <Typography
+              variant="subtitle2"
+              noWrap
+              sx={{
+                fontWeight: 650,
+                lineHeight: 1.2,
+              }}
+            >
               {user.username}
             </Typography>
-            <Typography variant="caption" color="text.secondary" noWrap sx={{ display: 'block', mt: 0.25 }}>
+
+            <Typography
+              variant="caption"
+              color="text.secondary"
+              noWrap
+              sx={{
+                display: "block",
+                mt: 0.25,
+              }}
+            >
               View profile →
             </Typography>
           </Box>
@@ -143,93 +219,118 @@ export default function Navbar() {
 
       {isAuthenticated && <Divider />}
 
-      {/* Nav links - without duplicate Profile item */}
-      <List sx={{ px: 1.5, py: 1.5 }}>
-        {isAuthenticated ? (
+      {/* Navigation */}
+      <List
+        sx={{
+          px: 1.5,
+          py: 1.5,
+        }}
+      >
+        {isAuthenticated && (
           <>
-            <ListItem disablePadding sx={{ mb: 0.5 }}>
+            <ListItem
+              disablePadding
+              sx={{
+                mb: 0.5,
+              }}
+            >
               <ListItemButton
                 component={RouterLink}
                 to="/"
-                selected={isActive('/')}
+                selected={isActive("/")}
                 onClick={() => setDrawerOpen(false)}
-                sx={{ borderRadius: 2, py: 1 }}
+                sx={{
+                  borderRadius: 2,
+                  py: 1,
+                }}
               >
-                <ListItemIcon sx={{ minWidth: 40, color: isActive('/') ? 'primary.main' : 'inherit' }}>
+                <ListItemIcon
+                  sx={{
+                    minWidth: 40,
+                    color: isActive("/") ? "primary.main" : "inherit",
+                  }}
+                >
                   <HomeOutlinedIcon />
                 </ListItemIcon>
+
                 <ListItemText
                   primary="Feed"
-                  primaryTypographyProps={{ fontWeight: isActive('/') ? 650 : 500 }}
+                  primaryTypographyProps={{
+                    fontWeight: isActive("/") ? 650 : 500,
+                  }}
                 />
               </ListItemButton>
             </ListItem>
 
-            <ListItem disablePadding sx={{ mb: 0.5 }}>
+            <ListItem
+              disablePadding
+              sx={{
+                mb: 0.5,
+              }}
+            >
               <ListItemButton
                 component={RouterLink}
                 to="/create-post"
-                selected={isActive('/create-post')}
+                selected={isActive("/create-post")}
                 onClick={() => setDrawerOpen(false)}
-                sx={{ borderRadius: 2, py: 1 }}
+                sx={{
+                  borderRadius: 2,
+                  py: 1,
+                }}
               >
-                <ListItemIcon sx={{ minWidth: 40, color: isActive('/create-post') ? 'primary.main' : 'inherit' }}>
+                <ListItemIcon
+                  sx={{
+                    minWidth: 40,
+                    color: isActive("/create-post")
+                      ? "primary.main"
+                      : "inherit",
+                  }}
+                >
                   <AddCircleOutlineIcon />
                 </ListItemIcon>
+
                 <ListItemText
                   primary="Create post"
-                  primaryTypographyProps={{ fontWeight: isActive('/create-post') ? 650 : 500 }}
+                  primaryTypographyProps={{
+                    fontWeight: isActive("/create-post") ? 650 : 500,
+                  }}
                 />
               </ListItemButton>
             </ListItem>
-          </>
-        ) : (
-          <>
-            {location.pathname !== '/login' && (
-              <ListItem disablePadding sx={{ mb: 0.5 }}>
-                <ListItemButton
-                  component={RouterLink}
-                  to="/login"
-                  onClick={() => setDrawerOpen(false)}
-                  sx={{ borderRadius: 2, py: 1 }}
-                >
-                  <ListItemIcon sx={{ minWidth: 40 }}>
-                    <LoginOutlinedIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Sign in" />
-                </ListItemButton>
-              </ListItem>
-            )}
-            {location.pathname !== '/register' && (
-              <ListItem disablePadding sx={{ mb: 0.5 }}>
-                <ListItemButton
-                  component={RouterLink}
-                  to="/register"
-                  onClick={() => setDrawerOpen(false)}
-                  sx={{ borderRadius: 2, py: 1 }}
-                >
-                  <ListItemIcon sx={{ minWidth: 40 }}>
-                    <PersonAddOutlinedIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Create account" />
-                </ListItemButton>
-              </ListItem>
-            )}
           </>
         )}
       </List>
 
       <Box sx={{ flex: 1 }} />
+
       <Divider />
 
-      {/* Drawer bottom: only Sign Out if authenticated (theme toggle is already in the top bar) */}
+      {/* Mobile Logout */}
       {isAuthenticated && (
-        <List sx={{ px: 1.5, py: 1.5 }}>
+        <List
+          sx={{
+            px: 1.5,
+            py: 1.5,
+          }}
+        >
           <ListItem disablePadding>
-            <ListItemButton onClick={handleLogout} sx={{ borderRadius: 2, py: 1, color: 'error.main' }}>
-              <ListItemIcon sx={{ minWidth: 40, color: 'error.main' }}>
+            <ListItemButton
+              onClick={handleLogout}
+              sx={{
+                borderRadius: 2,
+                py: 1,
+                color: "error.main",
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 40,
+                  color: "error.main",
+                }}
+              >
                 <LogoutOutlinedIcon />
               </ListItemIcon>
+
               <ListItemText primary="Sign out" />
             </ListItemButton>
           </ListItem>
@@ -247,13 +348,29 @@ export default function Navbar() {
           zIndex: (t) => t.zIndex.drawer + 1,
         }}
       >
-        <Toolbar sx={{ px: { xs: 2, sm: 3 }, minHeight: { xs: 58, sm: 64 }, gap: 1 }}>
+        <Toolbar
+          sx={{
+            px: {
+              xs: 2,
+              sm: 3,
+            },
+            minHeight: {
+              xs: 58,
+              sm: 64,
+            },
+            gap: 1,
+          }}
+        >
+          {/* Mobile Menu */}
           {isMobile && !isAuthPage && (
             <IconButton
               edge="start"
               aria-label="Open navigation menu"
               onClick={() => setDrawerOpen(true)}
-              sx={{ mr: 0.5, color: 'text.primary' }}
+              sx={{
+                mr: 0.5,
+                color: "text.primary",
+              }}
             >
               <MenuIcon />
             </IconButton>
@@ -261,9 +378,16 @@ export default function Navbar() {
 
           <Logo />
 
-          {/* Desktop Primary Nav */}
+          {/* Desktop Primary Navigation */}
           {!isMobile && isAuthenticated && (
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, ml: 4 }}>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 0.5,
+                ml: 4,
+              }}
+            >
               <Button
                 component={RouterLink}
                 to="/"
@@ -273,18 +397,24 @@ export default function Navbar() {
                   px: 2,
                   py: 0.75,
                   borderRadius: 2,
-                  fontWeight: isActive('/') ? 650 : 500,
-                  color: isActive('/') ? 'primary.main' : 'text.secondary',
-                  bgcolor: isActive('/')
-                    ? (t) => (t.palette.mode === 'light' ? 'rgba(14, 77, 85, 0.08)' : 'rgba(27, 106, 117, 0.15)')
-                    : 'transparent',
-                  '&:hover': {
-                    color: 'text.primary',
+                  fontWeight: isActive("/") ? 650 : 500,
+                  color: isActive("/")
+                    ? "primary.main"
+                    : "text.secondary",
+                  bgcolor: isActive("/")
+                    ? (t) =>
+                        t.palette.mode === "light"
+                          ? "rgba(14, 77, 85, 0.08)"
+                          : "rgba(27, 106, 117, 0.15)"
+                    : "transparent",
+                  "&:hover": {
+                    color: "text.primary",
                   },
                 }}
               >
                 Feed
               </Button>
+
               <Button
                 component={RouterLink}
                 to="/create-post"
@@ -294,13 +424,18 @@ export default function Navbar() {
                   px: 2,
                   py: 0.75,
                   borderRadius: 2,
-                  fontWeight: isActive('/create-post') ? 650 : 500,
-                  color: isActive('/create-post') ? 'primary.main' : 'text.secondary',
-                  bgcolor: isActive('/create-post')
-                    ? (t) => (t.palette.mode === 'light' ? 'rgba(14, 77, 85, 0.08)' : 'rgba(27, 106, 117, 0.15)')
-                    : 'transparent',
-                  '&:hover': {
-                    color: 'text.primary',
+                  fontWeight: isActive("/create-post") ? 650 : 500,
+                  color: isActive("/create-post")
+                    ? "primary.main"
+                    : "text.secondary",
+                  bgcolor: isActive("/create-post")
+                    ? (t) =>
+                        t.palette.mode === "light"
+                          ? "rgba(14, 77, 85, 0.08)"
+                          : "rgba(27, 106, 117, 0.15)"
+                    : "transparent",
+                  "&:hover": {
+                    color: "text.primary",
                   },
                 }}
               >
@@ -311,29 +446,52 @@ export default function Navbar() {
 
           <Box sx={{ flexGrow: 1 }} />
 
-          {/* Theme Toggle Button */}
-          <Tooltip title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}>
+          {/* Theme Toggle */}
+          <Tooltip
+            title={
+              isDark
+                ? "Switch to light mode"
+                : "Switch to dark mode"
+            }
+          >
             <IconButton
               color="inherit"
               onClick={toggleTheme}
-              aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+              aria-label={
+                isDark
+                  ? "Switch to light mode"
+                  : "Switch to dark mode"
+              }
               size="small"
               sx={{
                 p: 1,
-                color: 'text.secondary',
-                '&:hover': { color: 'text.primary' },
+                color: "text.secondary",
+                "&:hover": {
+                  color: "text.primary",
+                },
               }}
             >
-              {isDark ? <LightModeOutlinedIcon fontSize="small" /> : <DarkModeOutlinedIcon fontSize="small" />}
+              {isDark ? (
+                <LightModeOutlinedIcon fontSize="small" />
+              ) : (
+                <DarkModeOutlinedIcon fontSize="small" />
+              )}
             </IconButton>
           </Tooltip>
 
           {/* Desktop Right Actions */}
-          {!isMobile && (
+          {!isMobile && !isAuthPage && (
             <>
-              {isAuthenticated ? (
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, ml: 1 }}>
-                  {/* User Profile Pill */}
+              {isAuthenticated && (
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 1.5,
+                    ml: 1,
+                  }}
+                >
+                  {/* User Profile */}
                   <Button
                     component={RouterLink}
                     to="/profile"
@@ -342,73 +500,62 @@ export default function Navbar() {
                       p: 0.5,
                       pr: 1.5,
                       borderRadius: 6,
-                      textTransform: 'none',
+                      textTransform: "none",
                       border: 1,
-                      borderColor: isActive('/profile') ? 'primary.main' : 'divider',
-                      bgcolor: isActive('/profile')
-                        ? (t) => (t.palette.mode === 'light' ? 'rgba(14, 77, 85, 0.06)' : 'rgba(27, 106, 117, 0.12)')
-                        : 'transparent',
+                      borderColor: isActive("/profile")
+                        ? "primary.main"
+                        : "divider",
+                      bgcolor: isActive("/profile")
+                        ? (t) =>
+                            t.palette.mode === "light"
+                              ? "rgba(14, 77, 85, 0.06)"
+                              : "rgba(27, 106, 117, 0.12)"
+                        : "transparent",
                     }}
                   >
                     <Avatar
                       src={user?.profile_picture_url || undefined}
-                      alt={user?.username}
+                      alt={user?.username || "Profile"}
                       sx={{
                         width: 28,
                         height: 28,
-                        fontSize: '0.8rem',
+                        fontSize: "0.8rem",
                         mr: 1,
-                        bgcolor: 'primary.main',
+                        bgcolor: "primary.main",
                         fontWeight: 600,
                       }}
                     >
                       {user?.username?.charAt(0)?.toUpperCase()}
                     </Avatar>
-                    <Typography variant="body2" sx={{ fontWeight: 650, color: 'text.primary' }}>
+
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        fontWeight: 650,
+                        color: "text.primary",
+                      }}
+                    >
                       {user?.username}
                     </Typography>
                   </Button>
 
-                  {/* Desktop Logout Button */}
+                  {/* Desktop Logout */}
                   <Tooltip title="Sign out">
                     <IconButton
                       color="inherit"
                       onClick={handleLogout}
                       aria-label="Sign out"
                       size="small"
-                      sx={{ color: 'text.secondary', '&:hover': { color: 'error.main' } }}
+                      sx={{
+                        color: "text.secondary",
+                        "&:hover": {
+                          color: "error.main",
+                        },
+                      }}
                     >
                       <LogoutOutlinedIcon fontSize="small" />
                     </IconButton>
                   </Tooltip>
-                </Box>
-              ) : (
-                /* Unauthenticated non-redundant auth actions */
-                <Box sx={{ display: 'flex', gap: 1, ml: 1 }}>
-                  {location.pathname !== '/login' && (
-                    <Button
-                      component={RouterLink}
-                      to="/login"
-                      color="inherit"
-                      variant="text"
-                      size="small"
-                      sx={{ fontWeight: 600 }}
-                    >
-                      Sign in
-                    </Button>
-                  )}
-                  {location.pathname !== '/register' && (
-                    <Button
-                      component={RouterLink}
-                      to="/register"
-                      variant="contained"
-                      color="primary"
-                      size="small"
-                      sx={{ fontWeight: 600 }}
-                    >
-                      Create account
-                    </Button>
-                  )}
                 </Box>
               )}
             </>
@@ -420,11 +567,12 @@ export default function Navbar() {
         anchor="left"
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
-        ModalProps={{ keepMounted: true }}
+        ModalProps={{
+          keepMounted: true,
+        }}
       >
         {drawerContent}
       </Drawer>
     </>
   );
 }
-

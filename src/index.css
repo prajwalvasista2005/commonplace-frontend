@@ -52,6 +52,12 @@ textarea:-webkit-autofill:active {
   border-radius: inherit !important;
 }
 
+/* Hide Edge's native password reveal control.
+   Commonplace uses its own accessible show/hide button. */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
 /* Dark mode autofill */
 @media (prefers-color-scheme: dark) {
   input:-webkit-autofill,
