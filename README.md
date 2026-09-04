@@ -1,16 +1,119 @@
-# React + Vite
+# Commonplace — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+The frontend for **Commonplace**, a full-stack social media platform designed for sharing ideas, discussions, and content worth saving.
 
-Currently, two official plugins are available:
+The application is built with React and Material UI and communicates with a FastAPI backend through a REST API.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Live Application
 
-## React Compiler
+**Production:**  
+https://commonplace-snowy.vercel.app
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Backend API:**  
+https://social-media-u3ph.onrender.com
 
-## Expanding the Oxlint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Overview
+
+Commonplace allows users to create and interact with posts while building a small social network around shared ideas.
+
+The frontend provides:
+
+- User authentication
+- Responsive feed
+- Post creation and editing
+- Likes and unlikes
+- Comments
+- Follow and unfollow
+- Saved posts
+- User profiles
+- Profile editing
+- Responsive navigation
+- Light and dark themes
+- Loading states and skeletons
+- Error handling and error pages
+- Terms and Privacy pages
+
+The frontend is designed to work directly with the existing FastAPI backend without introducing separate mock APIs or duplicated business logic.
+
+---
+
+## Tech Stack
+
+### Core
+
+- React
+- Vite
+- JavaScript (ES6+)
+
+### UI
+
+- Material UI (MUI)
+- Emotion
+
+### Routing
+
+- React Router
+
+### Forms & Validation
+
+- React Hook Form
+
+### HTTP & Authentication
+
+- Axios
+- JWT-based authentication
+- Access and refresh tokens
+- `jwt-decode`
+
+### Development
+
+- ESLint / Oxlint
+- Vite production builds
+
+### Deployment
+
+- Vercel
+
+---
+
+## Architecture
+
+The frontend follows a component-based React architecture.
+
+```text
+src/
+├── api/
+│   ├── axios.js
+│   └── services.js
+│
+├── components/
+│   ├── comments/
+│   ├── common/
+│   ├── posts/
+│   └── profile/
+│
+├── context/
+│   ├── AuthContext.jsx
+│   └── ThemeContext.jsx
+│
+├── hooks/
+│
+├── pages/
+│   ├── Login.jsx
+│   ├── Register.jsx
+│   ├── Profile.jsx
+│   ├── EditProfile.jsx
+│   ├── CreatePost.jsx
+│   ├── EditPost.jsx
+│   ├── PostDetail.jsx
+│   ├── NotFound.jsx
+│   ├── ErrorPages.jsx
+│   ├── Terms.jsx
+│   └── Privacy.jsx
+│
+├── theme.js
+├── App.jsx
+├── index.css
+└── main.jsx
