@@ -173,7 +173,7 @@ export default function EditProfile() {
               type={showPassword ? 'text' : 'password'}
               fullWidth
               error={Boolean(errors.password)}
-              helperText={errors.password?.message || 'Required to save changes.'}
+              helperText={errors.password?.message || 'Must be at least 8 characters to confirm changes.'}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
@@ -181,23 +181,26 @@ export default function EditProfile() {
                       aria-label={showPassword ? 'Hide password' : 'Show password'}
                       onClick={() => setShowPassword((prev) => !prev)}
                       edge="end"
+                      size="small"
+                      sx={{ color: 'text.secondary' }}
                     >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                      {showPassword ? <VisibilityOff fontSize="small" /> : <Visibility fontSize="small" />}
                     </IconButton>
                   </InputAdornment>
                 ),
               }}
               {...register('password', {
                 required: 'Enter your current or a new password to confirm changes',
-                minLength: { value: 6, message: 'Password must be at least 6 characters' },
+                minLength: { value: 8, message: 'Password must be at least 8 characters' },
+                maxLength: { value: 128, message: 'Password must be under 128 characters' },
               })}
             />
 
-            <Stack direction="row" spacing={2} justifyContent="flex-end">
+            <Stack direction="row" spacing={2} justifyContent="flex-end" sx={{ pt: 1 }}>
               <Button variant="outlined" onClick={() => navigate('/profile')} disabled={isSubmitting}>
                 Cancel
               </Button>
-              <Button type="submit" variant="contained" disabled={isSubmitting}>
+              <Button type="submit" variant="contained" disabled={isSubmitting} sx={{ fontWeight: 650 }}>
                 {isSubmitting ? 'Saving...' : 'Save changes'}
               </Button>
             </Stack>

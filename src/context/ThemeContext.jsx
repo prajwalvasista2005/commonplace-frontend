@@ -1,8 +1,8 @@
-import { createContext, useCallback, useContext, useMemo, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { createAppTheme } from '../theme';
 
-const ThemeContext = createContext(null);
+export const ThemeContext = createContext(null);
 
 const STORAGE_KEY = 'theme_mode';
 
@@ -11,6 +11,11 @@ export function ThemeModeProvider({ children }) {
     const stored = localStorage.getItem(STORAGE_KEY);
     return stored === 'dark' || stored === 'light' ? stored : 'light';
   });
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', mode);
+    document.documentElement.setAttribute('data-mui-color-scheme', mode);
+  }, [mode]);
 
   const toggleTheme = useCallback(() => {
     setMode((prev) => {
@@ -48,3 +53,4 @@ export function useThemeMode() {
   }
   return context;
 }
+

@@ -4,19 +4,68 @@
   box-sizing: border-box;
 }
 
+:root {
+  --autofill-bg: #FFFFFF;
+  --autofill-color: #162224;
+}
+
+[data-mui-color-scheme='dark'],
+.dark-mode,
+body[data-theme='dark'] {
+  --autofill-bg: #151D20;
+  --autofill-color: #EDF3F3;
+}
+
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 #root {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Browser autofill styling override:
+   Prevents pale blue autofill background overflow and matches app theme */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #FFFFFF inset !important;
+  -webkit-text-fill-color: #162224 !important;
+  caret-color: #0E4D55 !important;
+  transition: background-color 5000s ease-in-out 0s;
+  border-radius: inherit !important;
+}
+
+/* Dark mode autofill */
+@media (prefers-color-scheme: dark) {
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  textarea:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px #151D20 inset !important;
+    -webkit-text-fill-color: #EDF3F3 !important;
+    caret-color: #1B6A75 !important;
+  }
 }
 
 .skip-link {
@@ -25,24 +74,25 @@ body {
   left: 16px;
   z-index: 9999;
   padding: 8px 16px;
-  background-color: #1e3a3f;
-  color: #ffffff;
+  background-color: #0E4D55;
+  color: #F5F9F9;
   text-decoration: none;
   border-radius: 0 0 8px 8px;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 0.875rem;
   transition: top 0.2s ease;
 }
 
 .skip-link:focus {
   top: 0;
-  outline: 2px solid #ffffff;
+  outline: 2px solid #FFFFFF;
   outline-offset: 2px;
 }
 
 @keyframes entry-rise {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
