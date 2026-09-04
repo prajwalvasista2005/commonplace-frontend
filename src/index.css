@@ -101,9 +101,10 @@ textarea:-webkit-autofill:active {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *:not(.MuiCircularProgress-root):not(.MuiCircularProgress-circle):not(.MuiCircularProgress-svg) {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }
+

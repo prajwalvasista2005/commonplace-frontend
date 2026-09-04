@@ -18,7 +18,7 @@ export default function ProtectedRoute({ children }) {
         role="status"
         aria-label="Loading"
       >
-        <CircularProgress aria-hidden="true" />
+        <CircularProgress color="primary" size={40} thickness={4} />
       </Box>
     );
   }

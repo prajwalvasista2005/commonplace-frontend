@@ -349,9 +349,8 @@ export default function PostCard({ item, onUpdate, onDelete, showFullContent = f
                   component="span"
                   variant="body2"
                   sx={{
-                    fontFamily: '"IBM Plex Mono", monospace',
-                    fontSize: '0.85rem',
-                    fontWeight: liked ? 600 : 500,
+                    fontSize: '0.875rem',
+                    fontWeight: liked ? 650 : 500,
                   }}
                 >
                   {voteCount}
@@ -384,8 +383,8 @@ export default function PostCard({ item, onUpdate, onDelete, showFullContent = f
               component="span"
               variant="body2"
               sx={{
-                fontFamily: '"IBM Plex Mono", monospace',
-                fontSize: '0.85rem',
+                fontSize: '0.875rem',
+                fontWeight: 500,
               }}
             >
               {commentsCount}

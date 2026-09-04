@@ -22,19 +22,19 @@ function PostSkeleton() {
   return (
     <Card sx={{ p: { xs: 2, sm: 2.5 } }}>
       <Stack direction="row" spacing={1.5} alignItems="center" sx={{ mb: 2 }}>
-        <Skeleton variant="circular" width={38} height={38} />
+        <Skeleton animation="wave" variant="circular" width={38} height={38} />
         <Box sx={{ flex: 1 }}>
-          <Skeleton variant="text" width="28%" height={20} />
-          <Skeleton variant="text" width="16%" height={16} />
+          <Skeleton animation="wave" variant="text" width="28%" height={20} />
+          <Skeleton animation="wave" variant="text" width="16%" height={16} />
         </Box>
       </Stack>
-      <Skeleton variant="text" width="65%" height={28} sx={{ mb: 1 }} />
-      <Skeleton variant="text" width="100%" height={20} />
-      <Skeleton variant="text" width="85%" height={20} sx={{ mb: 2 }} />
+      <Skeleton animation="wave" variant="text" width="65%" height={28} sx={{ mb: 1 }} />
+      <Skeleton animation="wave" variant="text" width="100%" height={20} />
+      <Skeleton animation="wave" variant="text" width="85%" height={20} sx={{ mb: 2 }} />
       <Stack direction="row" spacing={2} sx={{ pt: 1, borderTop: 1, borderColor: 'divider' }}>
-        <Skeleton variant="rounded" width={52} height={28} />
-        <Skeleton variant="rounded" width={52} height={28} />
-        <Skeleton variant="circular" width={28} height={28} sx={{ ml: 'auto !important' }} />
+        <Skeleton animation="wave" variant="rounded" width={52} height={28} />
+        <Skeleton animation="wave" variant="rounded" width={52} height={28} />
+        <Skeleton animation="wave" variant="circular" width={28} height={28} sx={{ ml: 'auto !important' }} />
       </Stack>
     </Card>
   );

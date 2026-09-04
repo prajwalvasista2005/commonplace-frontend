@@ -184,6 +184,31 @@ export default function Login() {
           </Link>
         </Typography>
       </Paper>
+
+      {/* Terms and Privacy notice exclusively on Login */}
+      <Stack
+        direction="row"
+        spacing={1.5}
+        justifyContent="center"
+        alignItems="center"
+        sx={{ mt: 3, opacity: 0.8 }}
+      >
+        <Typography variant="caption" color="text.secondary">
+          &copy; {new Date().getFullYear()} Commonplace
+        </Typography>
+        <Box component="span" sx={{ color: 'text.secondary', fontSize: '0.75rem' }}>
+          •
+        </Box>
+        <Link component={RouterLink} to="/terms" underline="hover" color="text.secondary">
+          <Typography variant="caption">Terms</Typography>
+        </Link>
+        <Box component="span" sx={{ color: 'text.secondary', fontSize: '0.75rem' }}>
+          •
+        </Box>
+        <Link component={RouterLink} to="/privacy" underline="hover" color="text.secondary">
+          <Typography variant="caption">Privacy</Typography>
+        </Link>
+      </Stack>
     </Box>
   );
 }

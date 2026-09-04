@@ -10,8 +10,7 @@ function ErrorLayout({ code, title, message }) {
           variant="h1"
           sx={{
             fontSize: { xs: '5rem', sm: '7rem' },
-            fontFamily: '"Fraunces", Georgia, serif',
-            fontWeight: 700,
+            fontWeight: 800,
             color: 'primary.main',
             lineHeight: 1,
             letterSpacing: '-0.04em',
@@ -25,7 +24,7 @@ function ErrorLayout({ code, title, message }) {
             variant="h4"
             component="h1"
             gutterBottom
-            sx={{ fontFamily: '"Fraunces", Georgia, serif', fontWeight: 600 }}
+            sx={{ fontWeight: 700 }}
           >
             {title}
           </Typography>

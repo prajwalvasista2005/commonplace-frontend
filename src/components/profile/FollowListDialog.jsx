@@ -53,8 +53,7 @@ export default function FollowListDialog({ open, onClose, userId, mode, onSelect
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          fontFamily: '"Fraunces", Georgia, serif',
-          fontWeight: 600,
+          fontWeight: 700,
           pb: 1.5,
         }}
       >

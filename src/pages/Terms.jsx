@@ -19,7 +19,7 @@ export default function TermsPage() {
               variant="h4"
               component="h1"
               gutterBottom
-              sx={{ fontFamily: '"Fraunces", Georgia, serif', fontWeight: 600 }}
+              sx={{ fontWeight: 700 }}
             >
               Terms of Service
             </Typography>
@@ -34,7 +34,7 @@ export default function TermsPage() {
                 variant="h6"
                 component="h2"
                 gutterBottom
-                sx={{ fontFamily: '"Fraunces", Georgia, serif', fontWeight: 600 }}
+                sx={{ fontWeight: 650 }}
               >
                 1. Introduction
               </Typography>
@@ -50,7 +50,7 @@ export default function TermsPage() {
                 variant="h6"
                 component="h2"
                 gutterBottom
-                sx={{ fontFamily: '"Fraunces", Georgia, serif', fontWeight: 600 }}
+                sx={{ fontWeight: 650 }}
               >
                 2. User Accounts
               </Typography>
@@ -66,7 +66,7 @@ export default function TermsPage() {
                 variant="h6"
                 component="h2"
                 gutterBottom
-                sx={{ fontFamily: '"Fraunces", Georgia, serif', fontWeight: 600 }}
+                sx={{ fontWeight: 650 }}
               >
                 3. Content and Conduct
               </Typography>
@@ -83,7 +83,7 @@ export default function TermsPage() {
                 variant="h6"
                 component="h2"
                 gutterBottom
-                sx={{ fontFamily: '"Fraunces", Georgia, serif', fontWeight: 600 }}
+                sx={{ fontWeight: 650 }}
               >
                 4. Intellectual Property
               </Typography>
@@ -99,7 +99,7 @@ export default function TermsPage() {
                 variant="h6"
                 component="h2"
                 gutterBottom
-                sx={{ fontFamily: '"Fraunces", Georgia, serif', fontWeight: 600 }}
+                sx={{ fontWeight: 650 }}
               >
                 5. Limitation of Liability
               </Typography>
@@ -115,7 +115,7 @@ export default function TermsPage() {
                 variant="h6"
                 component="h2"
                 gutterBottom
-                sx={{ fontFamily: '"Fraunces", Georgia, serif', fontWeight: 600 }}
+                sx={{ fontWeight: 650 }}
               >
                 6. Governing Law
               </Typography>

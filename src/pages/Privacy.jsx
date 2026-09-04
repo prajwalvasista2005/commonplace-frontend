@@ -19,7 +19,7 @@ export default function PrivacyPage() {
               variant="h4"
               component="h1"
               gutterBottom
-              sx={{ fontFamily: '"Fraunces", Georgia, serif', fontWeight: 600 }}
+              sx={{ fontWeight: 700 }}
             >
               Privacy Policy
             </Typography>
@@ -34,7 +34,7 @@ export default function PrivacyPage() {
                 variant="h6"
                 component="h2"
                 gutterBottom
-                sx={{ fontFamily: '"Fraunces", Georgia, serif', fontWeight: 600 }}
+                sx={{ fontWeight: 650 }}
               >
                 1. Information We Collect
               </Typography>
@@ -51,7 +51,7 @@ export default function PrivacyPage() {
                 variant="h6"
                 component="h2"
                 gutterBottom
-                sx={{ fontFamily: '"Fraunces", Georgia, serif', fontWeight: 600 }}
+                sx={{ fontWeight: 650 }}
               >
                 2. How We Use Your Information
               </Typography>
@@ -67,7 +67,7 @@ export default function PrivacyPage() {
                 variant="h6"
                 component="h2"
                 gutterBottom
-                sx={{ fontFamily: '"Fraunces", Georgia, serif', fontWeight: 600 }}
+                sx={{ fontWeight: 650 }}
               >
                 3. Information Sharing
               </Typography>
@@ -82,7 +82,7 @@ export default function PrivacyPage() {
                 variant="h6"
                 component="h2"
                 gutterBottom
-                sx={{ fontFamily: '"Fraunces", Georgia, serif', fontWeight: 600 }}
+                sx={{ fontWeight: 650 }}
               >
                 4. Data Security
               </Typography>
@@ -98,7 +98,7 @@ export default function PrivacyPage() {
                 variant="h6"
                 component="h2"
                 gutterBottom
-                sx={{ fontFamily: '"Fraunces", Georgia, serif', fontWeight: 600 }}
+                sx={{ fontWeight: 650 }}
               >
                 5. Your Rights
               </Typography>
@@ -114,7 +114,7 @@ export default function PrivacyPage() {
                 variant="h6"
                 component="h2"
                 gutterBottom
-                sx={{ fontFamily: '"Fraunces", Georgia, serif', fontWeight: 600 }}
+                sx={{ fontWeight: 650 }}
               >
                 6. Policy Revisions
               </Typography>

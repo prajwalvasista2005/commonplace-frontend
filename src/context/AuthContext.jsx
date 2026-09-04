@@ -4,25 +4,19 @@ import api, { getErrorMessage } from '../api/axios';
 
 export const AuthContext = createContext(null);
 
-const fetchProfile = async () => {
+const isTokenExpired = (token) => {
   try {
-    const { data } = await api.get('/users/me');
-    return data;
-  } catch {
-    const token = localStorage.getItem('access_token');
-    if (!token) {
-      throw new Error('Not authenticated');
-    }
-
     const decoded = jwtDecode(token);
-    const userId = decoded.sub ?? decoded.user_id ?? decoded.id;
-    if (!userId) {
-      throw new Error('Invalid token');
-    }
-
-    const { data } = await api.get(`/users/${userId}`);
-    return data;
+    if (!decoded.exp) return false;
+    return decoded.exp * 1000 < Date.now();
+  } catch {
+    return true;
   }
+};
+
+const fetchProfile = async () => {
+  const { data } = await api.get('/users/me');
+  return data;
 };
 
 export function AuthProvider({ children }) {
@@ -37,8 +31,16 @@ export function AuthProvider({ children }) {
 
   const loadUser = useCallback(async () => {
     const token = localStorage.getItem('access_token');
+    const refreshToken = localStorage.getItem('refresh_token');
+
     if (!token) {
       setUser(null);
+      setLoading(false);
+      return;
+    }
+
+    if (isTokenExpired(token) && !refreshToken) {
+      clearSession();
       setLoading(false);
       return;
     }

@@ -22,7 +22,6 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
@@ -57,9 +56,8 @@ function Logo() {
         variant="h6"
         component="span"
         sx={{
-          fontFamily: '"Fraunces", Georgia, serif',
-          fontWeight: 650,
-          letterSpacing: '-0.015em',
+          fontWeight: 700,
+          letterSpacing: '-0.02em',
           fontSize: '1.25rem',
           color: 'text.primary',
         }}
@@ -78,6 +76,8 @@ export default function Navbar() {
   const { isDark, toggleTheme } = useThemeMode();
   const location = useLocation();
   const navigate = useNavigate();
+
+  const isAuthPage = location.pathname === '/login' || location.pathname === '/register';
 
   const handleLogout = async () => {
     setDrawerOpen(false);
@@ -102,7 +102,7 @@ export default function Navbar() {
 
       <Divider />
 
-      {/* User info if authenticated */}
+      {/* User profile header card in drawer - primary link to profile */}
       {isAuthenticated && user && (
         <Box
           component={RouterLink}
@@ -116,22 +116,26 @@ export default function Navbar() {
             gap: 1.5,
             textDecoration: 'none',
             color: 'inherit',
+            transition: 'background-color 0.15s ease',
             bgcolor: (t) => (t.palette.mode === 'light' ? 'rgba(14, 77, 85, 0.04)' : 'rgba(237, 243, 243, 0.04)'),
+            '&:hover': {
+              bgcolor: (t) => (t.palette.mode === 'light' ? 'rgba(14, 77, 85, 0.08)' : 'rgba(237, 243, 243, 0.08)'),
+            },
           }}
         >
           <Avatar
             src={user.profile_picture_url || undefined}
             alt={user.username}
-            sx={{ width: 40, height: 40, bgcolor: 'primary.main', fontWeight: 600 }}
+            sx={{ width: 42, height: 42, bgcolor: 'primary.main', fontWeight: 600 }}
           >
             {user.username?.charAt(0)?.toUpperCase()}
           </Avatar>
           <Box sx={{ minWidth: 0, flex: 1 }}>
-            <Typography variant="subtitle2" noWrap sx={{ fontWeight: 650 }}>
+            <Typography variant="subtitle2" noWrap sx={{ fontWeight: 650, lineHeight: 1.2 }}>
               {user.username}
             </Typography>
-            <Typography variant="caption" color="text.secondary" noWrap sx={{ display: 'block' }}>
-              {user.email}
+            <Typography variant="caption" color="text.secondary" noWrap sx={{ display: 'block', mt: 0.25 }}>
+              View profile →
             </Typography>
           </Box>
         </Box>
@@ -139,7 +143,7 @@ export default function Navbar() {
 
       {isAuthenticated && <Divider />}
 
-      {/* Nav links */}
+      {/* Nav links - without duplicate Profile item */}
       <List sx={{ px: 1.5, py: 1.5 }}>
         {isAuthenticated ? (
           <>
@@ -175,24 +179,6 @@ export default function Navbar() {
                 <ListItemText
                   primary="Create post"
                   primaryTypographyProps={{ fontWeight: isActive('/create-post') ? 650 : 500 }}
-                />
-              </ListItemButton>
-            </ListItem>
-
-            <ListItem disablePadding sx={{ mb: 0.5 }}>
-              <ListItemButton
-                component={RouterLink}
-                to="/profile"
-                selected={isActive('/profile')}
-                onClick={() => setDrawerOpen(false)}
-                sx={{ borderRadius: 2, py: 1 }}
-              >
-                <ListItemIcon sx={{ minWidth: 40, color: isActive('/profile') ? 'primary.main' : 'inherit' }}>
-                  <PersonOutlineIcon />
-                </ListItemIcon>
-                <ListItemText
-                  primary="Profile"
-                  primaryTypographyProps={{ fontWeight: isActive('/profile') ? 650 : 500 }}
                 />
               </ListItemButton>
             </ListItem>
@@ -236,18 +222,9 @@ export default function Navbar() {
       <Box sx={{ flex: 1 }} />
       <Divider />
 
-      {/* Bottom Preferences in Drawer */}
-      <List sx={{ px: 1.5, py: 1.5 }}>
-        <ListItem disablePadding sx={{ mb: 0.5 }}>
-          <ListItemButton onClick={toggleTheme} sx={{ borderRadius: 2, py: 1 }}>
-            <ListItemIcon sx={{ minWidth: 40 }}>
-              {isDark ? <LightModeOutlinedIcon /> : <DarkModeOutlinedIcon />}
-            </ListItemIcon>
-            <ListItemText primary={isDark ? 'Light mode' : 'Dark mode'} />
-          </ListItemButton>
-        </ListItem>
-
-        {isAuthenticated && (
+      {/* Drawer bottom: only Sign Out if authenticated (theme toggle is already in the top bar) */}
+      {isAuthenticated && (
+        <List sx={{ px: 1.5, py: 1.5 }}>
           <ListItem disablePadding>
             <ListItemButton onClick={handleLogout} sx={{ borderRadius: 2, py: 1, color: 'error.main' }}>
               <ListItemIcon sx={{ minWidth: 40, color: 'error.main' }}>
@@ -256,8 +233,8 @@ export default function Navbar() {
               <ListItemText primary="Sign out" />
             </ListItemButton>
           </ListItem>
-        )}
-      </List>
+        </List>
+      )}
     </Box>
   );
 
@@ -271,13 +248,12 @@ export default function Navbar() {
         }}
       >
         <Toolbar sx={{ px: { xs: 2, sm: 3 }, minHeight: { xs: 58, sm: 64 }, gap: 1 }}>
-          {isMobile && (
+          {isMobile && !isAuthPage && (
             <IconButton
               edge="start"
-              color="inherit"
               aria-label="Open navigation menu"
               onClick={() => setDrawerOpen(true)}
-              sx={{ mr: 0.5 }}
+              sx={{ mr: 0.5, color: 'text.primary' }}
             >
               <MenuIcon />
             </IconButton>

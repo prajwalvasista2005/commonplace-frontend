@@ -104,39 +104,33 @@ const getDesignTokens = (mode) => {
       divider: surfaces.divider,
     },
     typography: {
-      fontFamily: '"Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+      fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
       h1: {
-        fontFamily: '"Fraunces", Georgia, serif',
-        fontWeight: 650,
+        fontWeight: 700,
         letterSpacing: '-0.025em',
         lineHeight: 1.2,
       },
       h2: {
-        fontFamily: '"Fraunces", Georgia, serif',
-        fontWeight: 650,
+        fontWeight: 700,
         letterSpacing: '-0.02em',
         lineHeight: 1.25,
       },
       h3: {
-        fontFamily: '"Fraunces", Georgia, serif',
-        fontWeight: 600,
+        fontWeight: 650,
         letterSpacing: '-0.015em',
         lineHeight: 1.3,
       },
       h4: {
-        fontFamily: '"Fraunces", Georgia, serif',
-        fontWeight: 600,
+        fontWeight: 650,
         letterSpacing: '-0.01em',
         lineHeight: 1.35,
       },
       h5: {
-        fontFamily: '"Fraunces", Georgia, serif',
         fontWeight: 600,
         letterSpacing: '-0.005em',
         lineHeight: 1.4,
       },
       h6: {
-        fontFamily: '"Fraunces", Georgia, serif',
         fontWeight: 600,
         lineHeight: 1.4,
       },
@@ -160,8 +154,8 @@ const getDesignTokens = (mode) => {
         letterSpacing: '0.01em',
       },
       caption: {
-        fontFamily: '"IBM Plex Mono", "SFMono-Regular", Menlo, monospace',
-        letterSpacing: '0.02em',
+        fontSize: '0.75rem',
+        letterSpacing: '0.01em',
       },
     },
     shape: {
@@ -245,6 +239,7 @@ const getDesignTokens = (mode) => {
           root: {
             backdropFilter: 'blur(12px)',
             backgroundColor: isLight ? 'rgba(255, 255, 255, 0.92)' : 'rgba(21, 29, 32, 0.92)',
+            color: surfaces.textPrimary,
             borderBottom: `1px solid ${surfaces.border}`,
             boxShadow: isLight ? '0 1px 6px rgba(0, 0, 0, 0.02)' : 'none',
           },
@@ -287,7 +282,6 @@ const getDesignTokens = (mode) => {
         styleOverrides: {
           root: {
             borderRadius: 6,
-            fontFamily: '"IBM Plex Mono", monospace',
             fontWeight: 500,
           },
         },

@@ -98,7 +98,7 @@ export default function CreatePostForm() {
           variant="h5"
           component="h1"
           gutterBottom
-          sx={{ fontFamily: '"Fraunces", Georgia, serif', fontWeight: 600 }}
+          sx={{ fontWeight: 700 }}
         >
           Create a post
         </Typography>
